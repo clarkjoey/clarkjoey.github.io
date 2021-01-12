@@ -1,0 +1,55 @@
+<div id="ball" style="
+  z-index:5;
+  position:absolute;
+  left:0px;
+  top:0px;
+  width:50px;
+  height:50px;
+  border-radius:50%;
+  background:green"></div>
+
+<script>
+
+var velocityX = 3;
+var velocityY = 5;
+var positionX = 0;
+var positionY = 0;
+var ball = document.getElementById('ball');
+
+// Set the ball's boundaries
+var xMinBound = 0;
+var xMaxBound = 500;
+var yMinBound = 0;
+var yMaxBound = 500;
+// Intial direction of the ball (down and to the right)
+var vert = false;
+var hor = true;
+
+
+// YOUR CODE 
+// ----------------
+
+function moveBall() {
+    if (!vert) {
+        positionY = positionY + velocityY;
+        ball.style.top = positionY + "px";
+    } 
+    if (hor) {
+        positionX = positionX + velocityX;
+        ball.style.left = positionX + "px";        
+    }
+    if (vert) {
+        positionY = positionY - velocityY;
+        ball.style.top = positionY + "px";        
+    }
+    if (!hor) {
+        positionX = positionX - velocityX;
+        ball.style.left = positionX + "px";          
+    }
+    
+    if (positionX > xMaxBound || positionX < xMinBound) {hor = !hor;}
+    if (positionY > yMaxBound || positionY < yMinBound) {vert = !vert}
+}
+
+setInterval(moveBall, 5);
+</script>
